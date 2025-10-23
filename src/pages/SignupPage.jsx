@@ -1,28 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { signup } from "../Redux/features/auth/authSlice";
 
 const Signup = () => {
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!form.name || !form.email || !form.password) {
-      toast.error("All fields are required");
-      return;
-    }
-
-    dispatch(signup(form));
-    toast.success("Account created successfully!");
+  const onSubmit = (data) => {
+    dispatch(signup(data));
+    toast.success("Account created successfully! Please log in.");
     navigate("/login");
   };
 
@@ -33,47 +27,72 @@ const Signup = () => {
           Create an Account
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Full Name */}
           <div>
             <label className="block text-gray-700 mb-1 font-medium">
               Full Name
             </label>
             <input
+              {...register("name", {
+                required: "Full name is required",
+                minLength: { value: 3, message: "Name too short" },
+              })}
               type="text"
-              name="name"
               placeholder="John Doe"
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-              value={form.name}
-              onChange={handleChange}
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
           </div>
 
+          {/* Email */}
           <div>
             <label className="block text-gray-700 mb-1 font-medium">
               Email
             </label>
             <input
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email format",
+                },
+              })}
               type="email"
-              name="email"
               placeholder="example@email.com"
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-              value={form.email}
-              onChange={handleChange}
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
+          {/* Password */}
           <div>
             <label className="block text-gray-700 mb-1 font-medium">
               Password
             </label>
             <input
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
               type="password"
-              name="password"
               placeholder="********"
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-              value={form.password}
-              onChange={handleChange}
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <button
