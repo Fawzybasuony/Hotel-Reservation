@@ -23,7 +23,7 @@ const Signup = () => {
 
     dispatch(signup(form));
     toast.success("Account created successfully!");
-    navigate("/");
+    navigate("/login");
   };
 
   return (
