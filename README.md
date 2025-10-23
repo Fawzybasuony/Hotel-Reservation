@@ -1,16 +1,51 @@
-# React + Vite
+# 🏨 Hotel Booking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+تطبيق حجز فنادق بسيط تم تطويره باستخدام **React + Redux Toolkit + Tailwind CSS + React Hook Form + React Toastify**،  
+بيتيح للمستخدم تصفح الغرف، عمل حجز، وإدارة الحجوزات من خلال Dashboard.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 المميزات
 
-## React Compiler
+- 🏠 صفحة رئيسية لعرض الغرف المتاحة.
+- 🔍 إمكانية تصفية الغرف حسب النوع والسعر.
+- 🛏️ صفحة تفاصيل كل غرفة.
+- 🧾 إمكانية الحجز وإلغاء الحجز.
+- 👤 تسجيل الدخول وتسجيل حساب جديد.
+- 📦 حفظ البيانات محليًا باستخدام `localStorage`.
+- 💅 واجهة مستخدم مصممة باستخدام **Tailwind CSS**.
+- 🔄 إدارة الحالة باستخدام **Redux Toolkit**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧠 التقنيات المستخدمة
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| التقنية              | الاستخدام                       |
+| -------------------- | ------------------------------- |
+| **React.js**         | بناء واجهة المستخدم             |
+| **Redux Toolkit**    | إدارة الحالة العامة للتطبيق     |
+| **React Router DOM** | التنقل بين الصفحات              |
+| **Tailwind CSS**     | تنسيق وتصميم الواجهة            |
+| **React Toastify**   | عرض الرسائل والتنبيهات          |
+| **React Hook Form**  | علي المدخلات Validation عمل     |
+| **LocalStorage**     | حفظ بيانات المستخدمين والحجوزات |
+
+---
+
+## ⚙️ التثبيت والتشغيل
+
+### 1️⃣ نسخ المشروع:
+
+```bash
+git clone https://github.com/Fawzybasuony/Hotel-Reservation.git
+```
+
+### تشغيل المشروع
+
+# cd hotel-booking-app
+
+# npm install
+
+# npm run dev
+
+
