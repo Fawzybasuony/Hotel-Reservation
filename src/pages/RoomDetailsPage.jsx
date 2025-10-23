@@ -34,7 +34,8 @@ const handleBooking = () => {
   };
 
   dispatch(bookRoom(reservation));
-  dispatch(markRoomAsBooked(room.id)); 
+dispatch(markRoomAsBooked(room.id));
+
   toast.success("Room booked successfully!");
   navigate("/dashboard");
 };

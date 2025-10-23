@@ -6,7 +6,10 @@ const mockRooms = [
   { id: 3, type: "Suite", price: 450, available: true, capacity: 4, amenities: "WiFi, TV, AC, Mini Bar" },
 ];
 
+ 
 export const fetchRooms = createAsyncThunk("rooms/fetchRooms", async () => {
+  const savedRooms = localStorage.getItem("rooms");
+  if (savedRooms) return JSON.parse(savedRooms);
   return new Promise((resolve) => {
     setTimeout(() => resolve(mockRooms), 800);
   });
@@ -20,16 +23,16 @@ const roomsSlice = createSlice({
     error: null,
   },
   reducers: {
-    // ✅ لما الغرفة تتحجز، نخلي available = false
     markRoomAsBooked: (state, action) => {
       const room = state.rooms.find((r) => r.id === action.payload);
       if (room) room.available = false;
+      localStorage.setItem("rooms", JSON.stringify(state.rooms));  
     },
 
-    // ✅ لما الحجز يتلغي، نرجّع available = true
     markRoomAsAvailable: (state, action) => {
       const room = state.rooms.find((r) => r.id === action.payload);
       if (room) room.available = true;
+      localStorage.setItem("rooms", JSON.stringify(state.rooms));  
     },
   },
   extraReducers: (builder) => {

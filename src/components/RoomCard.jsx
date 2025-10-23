@@ -1,10 +1,8 @@
- 
 import { Link } from "react-router-dom";
 
 const RoomCard = ({ room }) => {
   return (
     <div className="bg-white  rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-      
       <div className="h-48 w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
@@ -13,7 +11,6 @@ const RoomCard = ({ room }) => {
         />
       </div>
 
-    
       <div className="p-4">
         <h2 className="text-lg font-semibold text-gray-800 mb-1">
           {room.type} Room
@@ -28,12 +25,14 @@ const RoomCard = ({ room }) => {
           {room.available ? "Available" : "Not Available"}
         </p>
 
-        <Link
-          to={`/room/${room.id}`}
-          className="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300"
-        >
-          View Details
-        </Link>
+        {room.available === true && (
+          <Link
+            to={`/room/${room.id}`}
+            className="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300"
+          >
+            View Details
+          </Link>
+        )}
       </div>
     </div>
   );

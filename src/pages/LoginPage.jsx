@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+    <div className="flex justify-center items-center min-h-screen bg-linear-to-br from-blue-50 to-blue-100">
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md border border-gray-200"

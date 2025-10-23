@@ -1,7 +1,7 @@
-import React from "react";
+ 
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import {  cancelRoomWithUpdate } from "../Redux/features/reservations/reservationsSlice";
+import { markRoomAsAvailable } from "../Redux/features/rooms/roomsSlice";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   if (!user) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+      <div className="flex justify-center items-center min-h-screen bg-linear-to-br from-blue-50 to-blue-100">
         <p className="text-lg font-medium text-gray-700 bg-white p-6 rounded-xl shadow-md">
           Please <span className="text-blue-600 font-semibold">login</span> to view your dashboard.
         </p>
@@ -19,13 +19,13 @@ const Dashboard = () => {
   }
 
   const handleCancel = (id, roomId) => {
-    dispatch(cancelRoomWithUpdate({ id, roomId }));
+    dispatch(markRoomAsAvailable(roomId)); 
     toast.info("Reservation cancelled.");
   };
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-10 px-5">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-blue-100 py-10 px-5">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
@@ -62,12 +62,13 @@ const Dashboard = () => {
                   </p>
                 </div>
 
-                <button
-                  onClick={() => handleCancel(res.id)}
-                  className="bg-red-500 hover:bg-red-600 text-white font-semibold w-full py-2 rounded-lg transition-all duration-300"
-                >
-                  Cancel Reservation
-                </button>
+             <button
+  onClick={() => handleCancel(res.id, res.roomId)}
+  className="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700"
+>
+  ❌ Cancel Booking
+</button>
+
               </div>
             ))}
           </div>
